@@ -18,11 +18,29 @@
 angular.module("my.first.controller", [])
     .controller('FirstController', ["$scope","$http",function ($scope,$http) {
     var url = 'http://jsonplaceholder.typicode.com/posts';
+    $scope.posts =[];
+    $scope.newPost = {};
     $http.get(url)
         .success(function(response){
             $scope.posts = response;
         }).error(function(){
 
         });
+
+    $scope.addPost = function(){
+        $http.post(url,{
+            title:$scope.newPost.title,
+            body:$scope.newPost.body,
+            userId: 1
+        })
+            .success(function(response,status,headers,config){
+                console.log(response);
+                $scope.posts.push(response);
+                $scope.newPost ={};
+
+            }).error(function(error,status,headers,config){
+                console.log(error);
+            });
+    }
 }]);
 
