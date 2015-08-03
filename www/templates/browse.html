@@ -1,23 +1,10 @@
-<ion-view view-title="AJAX">
-  <ion-content ng-controller="FirstController">
-      <div class="list list-inset">
-          <label class="item item-input">
-              <input type="text" autofocus placeholder="title" ng-model="newPost.title">
-          </label>
-          <label class="item item-input">
-              <textarea placeholder="Comments" ng-model="newPost.body"></textarea>
-          </label>
-          <button class="button button-block button-positive" ng-click="addPost()">
-              add post
-          </button>
-      </div>
-      <div class="card" ng-repeat="post in posts">
-          <div class="item item-divider">
-              {{post.title}}
-          </div>
-          <div class="item item-text-wrap">
-              {{post.body}}
-          </div>
+<ion-view view-title="Repositories">
+  <ion-content ng-controller="FirstController" ng-cloak>
+          <a class="item item-thumbnail-left" href="#" ng-repeat="post in posts">
+              <img ng-src="{{post.owner.avatar_url}}">
+              <h2>{{post.name}}</h2>
+              <p>{{post.description}}</p>
+          </a>
       </div>
   </ion-content>
 </ion-view>

@@ -16,31 +16,21 @@
  *
  */
 angular.module("my.first.controller", [])
+    .directive('ngImage',function(){
+        return function(scope,element,attrs){
+            attrs.$observe('ngImage',function(value){
+                //css
+            })
+        }
+    })
     .controller('FirstController', ["$scope","$http",function ($scope,$http) {
-    var url = 'http://jsonplaceholder.typicode.com/posts';
+    var url = 'https://api.github.com/users/sonico999/repos';
     $scope.posts =[];
-    $scope.newPost = {};
     $http.get(url)
         .success(function(response){
             $scope.posts = response;
         }).error(function(){
 
         });
-
-    $scope.addPost = function(){
-        $http.post(url,{
-            title:$scope.newPost.title,
-            body:$scope.newPost.body,
-            userId: 1
-        })
-            .success(function(response,status,headers,config){
-                console.log(response);
-                $scope.posts.push(response);
-                $scope.newPost ={};
-
-            }).error(function(error,status,headers,config){
-                console.log(error);
-            });
-    }
 }]);
 
